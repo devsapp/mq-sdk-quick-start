@@ -29,12 +29,16 @@ def zip_file(workspace, eve_app):
     return 'code.zip'
 
 def upload_oss(code_name, zip_file):
+    print('a')
     auth = oss2.Auth(os.environ.get('AccessKeyId'), os.environ.get('AccessKeySecret'))
     bucket = oss2.Bucket(auth, os.environ.get('ArtifactEndpoint'), os.environ.get('ArtifactBucket'))
-
+    print('b')
     with open(zip_file, 'rb') as fileobj:
+        print('c')
         object_name = '%s/code/code.zip' % (code_name)
+        print('d')
         bucket.put_object(object_name, fileobj)
+        print('e')
 
 workspace = os.getcwd()
 with open('update.list') as f:
