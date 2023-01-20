@@ -2,7 +2,6 @@ from pathlib import Path
 import zipfile
 import os
 import oss2
-import shutil
 
 def path_is_parent(parent_path, child_path):
     parent_path = os.path.abspath(parent_path)
@@ -34,7 +33,7 @@ def upload_oss(code_name, zip_file):
     bucket = oss2.Bucket(auth, os.environ.get('ArtifactEndpoint'), os.environ.get('ArtifactBucket'))
 
     with open(zip_file, 'rb') as fileobj:
-        object_name = '%s/code.zip' % (code_name)
+        object_name = '%s/code/code.zip' % (code_name)
         bucket.put_object(object_name, fileobj)
 
 workspace = os.getcwd()
