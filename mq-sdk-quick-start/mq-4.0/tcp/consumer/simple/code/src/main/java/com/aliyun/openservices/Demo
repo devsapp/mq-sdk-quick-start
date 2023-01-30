@@ -1,20 +1,16 @@
 package com.aliyun.openservices;
 
-import java.util.Date;
 import java.util.Properties;
-import com.aliyun.openservices.ons.api.Message;
+import com.aliyun.openservices.ons.api.Consumer;
 import com.aliyun.openservices.ons.api.ONSFactory;
-import com.aliyun.openservices.ons.api.Producer;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
-import com.aliyun.openservices.ons.api.SendResult;
-import com.aliyun.openservices.ons.api.exception.ONSClientException;
 
 public class Demo {
 
     // 使用必读！！！！
     // 您需要将阿里云密钥信息填写到代码中的 ACCESS_KEY 和 SECRET_KEY 的变量中。
     // 如果您还没有密钥，您可以在 RAM 控制台中创建密钥。https://ram.console.aliyun.com/manage/ak
-    // 注意：此密钥必须具有消息发送的权限，否则将无法完成消息发送。https://help.aliyun.com/document_detail/112711.html
+    // 注意：此密钥必须具有消息接收的权限，否则将无法完成消息接收。https://help.aliyun.com/document_detail/112711.html
     // Please replace the ACCESS_KEY and SECRET_KEY with your Aliyun AK and SK.
 
     public static final String ACCESS_KEY = "YOUR_ALIYUN_ACCESS_KEY_ID";
@@ -23,26 +19,24 @@ public class Demo {
     public static final String NAMESRV_ADDR = "${NAMESRV_ADDR}";
     public static final String TOPIC = "${TOPIC}";
     public static final String TAG = "${TAG}";
+    public static final String GROUP_ID = "${GROUP_ID}";
 
     public static void main(String[] args) {
-        Properties producerProperties = new Properties();
-        producerProperties.setProperty(PropertyKeyConst.AccessKey, ACCESS_KEY);
-        producerProperties.setProperty(PropertyKeyConst.SecretKey, SECRET_KEY);
-        producerProperties.setProperty(PropertyKeyConst.NAMESRV_ADDR, NAMESRV_ADDR);
-        Producer producer = ONSFactory.createProducer(producerProperties);
-        producer.start();
-        System.out.println("Producer Started");
+        Properties consumerProperties = new Properties();
+        consumerProperties.setProperty(PropertyKeyConst.GROUP_ID, GROUP_ID);
+        consumerProperties.setProperty(PropertyKeyConst.AccessKey, ACCESS_KEY);
+        consumerProperties.setProperty(PropertyKeyConst.SecretKey, SECRET_KEY);
+        consumerProperties.setProperty(PropertyKeyConst.NAMESRV_ADDR, NAMESRV_ADDR);
+        Consumer consumer = ONSFactory.createConsumer(consumerProperties);
+        consumer.subscribe(TOPIC, TAG, new MessageListenerImpl());
+        consumer.start();
+        System.out.println("Consumer start success.");
 
-        for (int i = 0; i < 10; i++) {
-            Message message = new Message(TOPIC, TAG, "mq send transaction message test".getBytes());
-            try {
-                SendResult sendResult = producer.send(message);
-                assert sendResult != null;
-                System.out.println(new Date() + " Send mq message success! Topic is:" + TOPIC + " msgId is: " + sendResult.getMessageId());
-            } catch (ONSClientException e) {
-                System.out.println(new Date() + " Send mq message failed! Topic is:" + TOPIC);
-                e.printStackTrace();
-            }
+        // 等待固定时间防止进程退出
+        try {
+            Thread.sleep(2000000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
