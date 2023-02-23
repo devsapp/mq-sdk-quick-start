@@ -14,8 +14,8 @@ import org.apache.rocketmq.client.apis.message.MessageBuilder;
 public class Demo {
     // Please replace the ACCESS_KEY and SECRET_KEY with your RocketMQ instance
     // username and password.
-    public static final String ACCESS_KEY = "${USERNAME}";
-    public static final String SECRET_KEY = "${PASSWORD}";
+    public static final String ACCESS_KEY = "";
+    public static final String SECRET_KEY = "";
 
     // Please enable the public endpoint in instance detail page and replace the
     // following ENDPOINT parameter if you want to access it via internet.
