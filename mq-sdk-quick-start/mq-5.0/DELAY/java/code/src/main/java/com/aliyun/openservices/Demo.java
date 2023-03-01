@@ -81,5 +81,8 @@ public class Demo {
             System.out.println("Send mq message failed! Topic is:" + TOPIC_NAME);
             t.printStackTrace();
         }
+
+        // ${quickstart.producer.close.comment}
+        producer.close();
     }
 }

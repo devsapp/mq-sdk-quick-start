@@ -95,5 +95,8 @@ public class Demo {
          */
         transaction.commit();
         // transaction.rollback();
+
+        // ${quickstart.producer.close.comment}
+        producer.close();
     }
 }
