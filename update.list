@@ -1,2 +1,6 @@
 mq-sdk-quick-start/mq-5.0/NORMAL/java
 mq-sdk-quick-start/mq-5.0/PUSH_CONSUMER/java
+mq-sdk-quick-start/mq-5.0/DELAY/java
+mq-sdk-quick-start/mq-5.0/FIFO/java
+mq-sdk-quick-start/mq-5.0/TRANSACTION/java
+mq-sdk-quick-start/mq-5.0/SIMPLE_CONSUMER/java
