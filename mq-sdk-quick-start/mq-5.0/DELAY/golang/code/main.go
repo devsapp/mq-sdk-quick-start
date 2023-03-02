@@ -80,7 +80,7 @@ func main() {
 	} else if DelaySeconds != "" {
 		// ${quickstart.deliveryTimestamp.comment}
 		delaySeconds, _ := strconv.ParseInt(DelaySeconds, 10, 64)
-		msg.SetDelayTimestamp(time.Now().Add(time.Duration(delaySeconds) * time.Millisecond))
+		msg.SetDelayTimestamp(time.Now().Add(time.Duration(delaySeconds) * time.Second))
 	}
 
 	// ${quickstart.sendMessage.comment}
