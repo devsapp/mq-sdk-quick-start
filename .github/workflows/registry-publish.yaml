@@ -22,12 +22,12 @@ jobs:
       - name: Upload Source Code
         run: |
           ./ossutil64 cp -r ./mq-sdk-quick-start oss://${{ secrets.artifact_bucket }}/mq-sdk-quick-start-source-code-${{  github.ref_name }}/ -i ${{ secrets.access_key_id }} -k ${{ secrets.access_key_secret }} -e ${{ secrets.artifact_endpoint }}
-      - name: Publish package
-        env:
-          AccessKeyId: ${{ secrets.access_key_id }}
-          AccessKeySecret: ${{ secrets.access_key_secret }}
-          ArtifactEndpoint: ${{ secrets.artifact_endpoint }}
-          ArtifactBucket: ${{ secrets.artifact_bucket }}
-          RefName: ${{ github.ref_name }}
-        run: |
-          python publish.py
+      # - name: Publish package
+      #   env:
+      #     AccessKeyId: ${{ secrets.access_key_id }}
+      #     AccessKeySecret: ${{ secrets.access_key_secret }}
+      #     ArtifactEndpoint: ${{ secrets.artifact_endpoint }}
+      #     ArtifactBucket: ${{ secrets.artifact_bucket }}
+      #     RefName: ${{ github.ref_name }}
+      #   run: |
+      #     python publish.py
