@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strconv"
+	"time"
 
 	rmq_client "github.com/apache/rocketmq-clients/golang"
 	"github.com/apache/rocketmq-clients/golang/credentials"
@@ -15,11 +17,13 @@ import (
  * ${quickstart.endpoint.comment3}
  */
 const (
-	Endpoint = "${ENDPOINT}"
-	Topic    = "${TOPIC_NAME}"
-	Tag      = "${TAG}"
-	Key      = "${KEY}"
-	Body     = "${BODY}"
+	Endpoint          = "${ENDPOINT}"
+	Topic             = "${TOPIC_NAME}"
+	Tag               = "${TAG}"
+	Key               = "${KEY}"
+	Body              = "${BODY}"
+	DelaySeconds      = "${DELAY_SECONDS}"
+	DeliveryTimestamp = "${DELIVERY_TIMESTAMP}"
 )
 
 func main() {
@@ -67,6 +71,16 @@ func main() {
 	if Tag != "" {
 		// ${quickstart.tag.comment}
 		msg.SetTag(Tag)
+	}
+
+	if DeliveryTimestamp != "" {
+		// ${quickstart.deliveryTimestamp.comment}
+		deliveryTimestamp, _ := strconv.ParseInt(DeliveryTimestamp, 10, 64)
+		msg.SetDelayTimestamp(time.Unix(deliveryTimestamp, 0))
+	} else if DelaySeconds != "" {
+		// ${quickstart.deliveryTimestamp.comment}
+		delaySeconds, _ := strconv.ParseInt(DelaySeconds, 10, 64)
+		msg.SetDelayTimestamp(time.Now().Add(time.Duration(delaySeconds) * time.Millisecond))
 	}
 
 	// ${quickstart.sendMessage.comment}

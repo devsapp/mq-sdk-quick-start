@@ -39,6 +39,16 @@ func main() {
 			AccessSecret: "",
 		},
 	},
+		/**
+		 * ${quickstart.transactionChecker.comment1}
+		 * ${quickstart.transactionChecker.comment2}
+		 */
+		rmq_client.WithTransactionChecker(&rmq_client.TransactionChecker{
+			Check: func(msg *rmq_client.MessageView) rmq_client.TransactionResolution {
+				log.Printf("check transaction message: %v", msg)
+				return rmq_client.COMMIT
+			},
+		}),
 		rmq_client.WithTopics(Topic),
 	)
 	if err != nil {
@@ -51,6 +61,9 @@ func main() {
 	}
 
 	defer producer.GracefulStop()
+
+	// ${quickstart.transaction.start.comment}
+	transaction := producer.BeginTransaction()
 
 	msg := &rmq_client.Message{
 		// ${quickstart.setTopic.comment}
@@ -69,12 +82,26 @@ func main() {
 		msg.SetTag(Tag)
 	}
 
-	// ${quickstart.sendMessage.comment}
-	resp, err := producer.Send(context.TODO(), msg)
+	// ${quickstart.transaction.sendHalf.comment}
+	resp, err := producer.SendWithTransaction(context.TODO(), msg, transaction)
 	if err != nil {
 		log.Fatal(err)
 	}
 	for i := 0; i < len(resp); i++ {
 		fmt.Printf("%#v\n", resp[i])
 	}
+
+	/**
+	 * ${quickstart.transaction.result.comment1}
+	 * ${quickstart.transaction.result.comment2}
+	 * ${quickstart.transaction.result.comment3}
+	 * ${quickstart.transaction.result.comment4}
+	 *
+	 */
+	err = transaction.Commit()
+	// err = transaction.RollBack()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }

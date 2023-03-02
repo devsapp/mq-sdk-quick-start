@@ -15,11 +15,12 @@ import (
  * ${quickstart.endpoint.comment3}
  */
 const (
-	Endpoint = "${ENDPOINT}"
-	Topic    = "${TOPIC_NAME}"
-	Tag      = "${TAG}"
-	Key      = "${KEY}"
-	Body     = "${BODY}"
+	Endpoint     = "${ENDPOINT}"
+	Topic        = "${TOPIC_NAME}"
+	Tag          = "${TAG}"
+	Key          = "${KEY}"
+	Body         = "${BODY}"
+	MessageGroup = "MESSAGE_GROUP"
 )
 
 func main() {
@@ -67,6 +68,11 @@ func main() {
 	if Tag != "" {
 		// ${quickstart.tag.comment}
 		msg.SetTag(Tag)
+	}
+
+	if MessageGroup != "" {
+		// ${quickstart.messageGroup.comment}
+		msg.SetMessageGroup(MessageGroup)
 	}
 
 	// ${quickstart.sendMessage.comment}
