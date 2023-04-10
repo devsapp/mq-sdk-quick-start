@@ -53,6 +53,6 @@ public class Demo {
                 .build();
         Thread.sleep(Long.MAX_VALUE);
         // ${quickstart.consumer.close.comment}
-        pushConsumer.close();
+        // pushConsumer.close();
     }
 }
