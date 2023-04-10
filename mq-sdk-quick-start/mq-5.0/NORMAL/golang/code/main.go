@@ -69,6 +69,9 @@ func main() {
 		msg.SetTag(Tag)
 	}
 
+	// ${quickstart.property.comment}
+	${quickstart.property.content}
+
 	// ${quickstart.sendMessage.comment}
 	resp, err := producer.Send(context.TODO(), msg)
 	if err != nil {

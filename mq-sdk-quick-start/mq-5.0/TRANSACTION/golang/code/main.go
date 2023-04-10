@@ -82,6 +82,12 @@ func main() {
 		msg.SetTag(Tag)
 	}
 
+	// ${quickstart.transaction.property.comment}
+	msg.AddProperty("OrderId", "xxx")
+
+	// ${quickstart.property.comment}
+	${quickstart.property.content}
+
 	// ${quickstart.transaction.sendHalf.comment}
 	resp, err := producer.SendWithTransaction(context.TODO(), msg, transaction)
 	if err != nil {

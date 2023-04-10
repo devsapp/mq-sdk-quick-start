@@ -83,6 +83,9 @@ func main() {
 		msg.SetDelayTimestamp(time.Now().Add(time.Duration(delaySeconds) * time.Second))
 	}
 
+	// ${quickstart.property.comment}
+	${quickstart.property.content}
+
 	// ${quickstart.sendMessage.comment}
 	resp, err := producer.Send(context.TODO(), msg)
 	if err != nil {

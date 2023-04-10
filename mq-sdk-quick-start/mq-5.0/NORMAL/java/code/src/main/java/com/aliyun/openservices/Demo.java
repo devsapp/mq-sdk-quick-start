@@ -62,6 +62,9 @@ public class Demo {
             builder.setTag(TAG);
         }
 
+        // ${quickstart.property.comment}
+        ${quickstart.property.content}
+
         try {
             // ${quickstart.sendMessage.comment}
             final SendReceipt sendReceipt = producer.send(builder.build());

@@ -78,6 +78,9 @@ public class Demo {
         // ${quickstart.transaction.property.comment}
         builder.addProperty("OrderId", "xxx");
 
+        // ${quickstart.property.comment}
+        ${quickstart.property.content}
+
         try {
             // ${quickstart.transaction.sendHalf.comment}
             final SendReceipt sendReceipt = producer.send(builder.build(), transaction);
