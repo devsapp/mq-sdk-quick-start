@@ -34,7 +34,7 @@ public class Demo {
         // configBuilder.setCredentialProvider(
         //  new StaticSessionCredentialsProvider("Instance UserName", "Instance Password")
         // );
-         ClientConfiguration configuration = configBuilder.build();
+        ClientConfiguration configuration = configBuilder.build();
 
         /**
          * ${quickstart.provider.comment1}
