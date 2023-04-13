@@ -55,7 +55,7 @@ class Demo
         }
 
         // ${quickstart.property.comment}
-        ${ quickstart.property.content}
+        ${quickstart.property.content}
 
         // ${quickstart.sendMessage.comment}
         var sendReceipt = await producer.Send(builder.Build());

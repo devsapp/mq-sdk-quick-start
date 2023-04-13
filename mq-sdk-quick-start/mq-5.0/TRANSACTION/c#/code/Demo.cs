@@ -75,7 +75,7 @@ class Demo
         builder.AddProperty("OrderId", "xxx");
 
         // ${quickstart.property.comment}
-        ${ quickstart.property.content}
+        ${quickstart.property.content}
 
         // ${quickstart.transaction.sendHalf.comment}
         var sendReceipt = await producer.Send(builder.Build(), transaction);
