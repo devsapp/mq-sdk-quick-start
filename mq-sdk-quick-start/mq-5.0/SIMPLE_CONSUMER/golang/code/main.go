@@ -21,8 +21,8 @@ const (
 	FilterExpression  = "${FILTER_EXPRESSION}"
 	ConsumerGroup     = "${CONSUMER_GROUP_ID}"
 	AwaitDuration     = time.Second * 10
-	MaxMessageNum     = 16
-	InvisibleDuration = time.Second * 15
+	MaxMessageNum     = ${MAX_MESSAGE_NUM}
+	InvisibleDuration = time.Second * ${INVISIBLE_DURATION_SECONDS}
 )
 
 func main() {

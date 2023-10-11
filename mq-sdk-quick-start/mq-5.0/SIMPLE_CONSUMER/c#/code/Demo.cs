@@ -14,8 +14,8 @@ class Demo
     private static readonly string FILTER_EXPRESSION = "${FILTER_EXPRESSION}";
     private static readonly string CONSUMER_GROUP_ID = "${CONSUMER_GROUP_ID}";
     private static readonly long AWAIT_DURATION_SECONDS = 10;
-    private static readonly int MAX_MESSAGE = 16;
-    private static readonly long INVISIBLE_DURATION_SECONDS = 15;
+    private static readonly int MAX_MESSAGE = ${MAX_MESSAGE_NUM};
+    private static readonly long INVISIBLE_DURATION_SECONDS = ${INVISIBLE_DURATION_SECONDS};
 
     static async Task Main()
     {

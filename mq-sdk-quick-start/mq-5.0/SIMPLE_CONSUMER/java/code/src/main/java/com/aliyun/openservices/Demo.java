@@ -26,8 +26,8 @@ public class Demo {
     public static final String FILTER_EXPRESSION = "${FILTER_EXPRESSION}";
     public static final String CONSUMER_GROUP_ID = "${CONSUMER_GROUP_ID}";
     public static final long AWAIT_DURATION_SECONDS = 10;
-    public static final int MAX_MESSAGE = 16;
-    public static final long INVISIBLE_DURATION_SECONDS = 15;
+    public static final int MAX_MESSAGE = ${MAX_MESSAGE_NUM};
+    public static final long INVISIBLE_DURATION_SECONDS = ${INVISIBLE_DURATION_SECONDS};
 
     public static void main(String[] args) throws ClientException, IOException, InterruptedException {
         ClientServiceProvider provider = ClientServiceProvider.loadService();
