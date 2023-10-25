@@ -20,6 +20,8 @@ public class Demo {
      */
     public static final String ENDPOINT = "${ENDPOINT}";
     public static final String TOPIC_NAME = "${TOPIC_NAME}";
+    public static final String USERNAME = "${USERNAME}";
+    public static final String PASSWORD = "${PASSWORD}";
     public static final String TAG = "${TAG}";
     public static final String KEY = "${KEY}";
     public static final String BODY = "${BODY}";
@@ -34,9 +36,9 @@ public class Demo {
          * ${quickstart.ak.comment1}
          * ${quickstart.ak.comment2}
          */
-        // configBuilder.setCredentialProvider(
-        //  new StaticSessionCredentialsProvider("Instance UserName", "Instance Password")
-        // );
+        configBuilder.setCredentialProvider(
+            new StaticSessionCredentialsProvider(USERNAME, PASSWORD)
+        );
         ClientConfiguration configuration = configBuilder.build();
 
         /**

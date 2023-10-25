@@ -11,6 +11,8 @@ class Demo
     */
     private static readonly string ENDPOINT = "${ENDPOINT}";
     private static readonly string TOPIC_NAME = "${TOPIC_NAME}";
+    private static readonly string USERNAME = "${USERNAME}";
+    private static readonly string PASSWORD = "${PASSWORD}";
     private static readonly string TAG = "${TAG}";
     private static readonly string KEY = "${KEY}";
     private static readonly string BODY = "${BODY}";
@@ -24,7 +26,7 @@ class Demo
         * ${quickstart.ak.comment1}
         * ${quickstart.ak.comment2}
         */
-        // configBuilder.SetCredentialsProvider(new StaticSessionCredentialsProvider("Instance UserName", "Instance Password"));
+        configBuilder.SetCredentialsProvider(new StaticSessionCredentialsProvider(USERNAME, PASSWORD));
         var clientConfig = configBuilder.Build();
 
         /**

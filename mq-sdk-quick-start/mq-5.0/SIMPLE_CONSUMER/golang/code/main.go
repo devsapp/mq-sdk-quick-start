@@ -18,6 +18,8 @@ import (
 const (
 	Endpoint          = "${ENDPOINT}"
 	Topic             = "${TOPIC_NAME}"
+	Username          = "${USERNAME}"
+	Password          = "${PASSWORD}"
 	FilterExpression  = "${FILTER_EXPRESSION}"
 	ConsumerGroup     = "${CONSUMER_GROUP_ID}"
 	AwaitDuration     = time.Second * 10
@@ -37,8 +39,8 @@ func main() {
 			 * ${quickstart.ak.comment1}
 			 * ${quickstart.ak.comment2}
 			 */
-			AccessKey:    "",
-			AccessSecret: "",
+			AccessKey:    Username,
+			AccessSecret: Password,
 		},
 	},
 		rmq_client.WithAwaitDuration(AwaitDuration),

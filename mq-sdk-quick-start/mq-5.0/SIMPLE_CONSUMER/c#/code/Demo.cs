@@ -11,6 +11,8 @@ class Demo
     */
     private static readonly string ENDPOINT = "${ENDPOINT}";
     private static readonly string TOPIC_NAME = "${TOPIC_NAME}";
+    private static readonly string USERNAME = "${USERNAME}";
+    private static readonly string PASSWORD = "${PASSWORD}";
     private static readonly string FILTER_EXPRESSION = "${FILTER_EXPRESSION}";
     private static readonly string CONSUMER_GROUP_ID = "${CONSUMER_GROUP_ID}";
     private static readonly long AWAIT_DURATION_SECONDS = 10;
@@ -25,7 +27,7 @@ class Demo
         * ${quickstart.ak.comment1}
         * ${quickstart.ak.comment2}
         */
-        // configBuilder.SetCredentialsProvider(new StaticSessionCredentialsProvider("Instance UserName", "Instance Password"));
+        configBuilder.SetCredentialsProvider(new StaticSessionCredentialsProvider(USERNAME, PASSWORD));
         var clientConfig = configBuilder.Build();
 
         var simpleConsumer = await new SimpleConsumer.Builder()

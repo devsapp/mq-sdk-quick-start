@@ -19,6 +19,8 @@ import (
 const (
 	Endpoint          = "${ENDPOINT}"
 	Topic             = "${TOPIC_NAME}"
+	Username          = "${USERNAME}"
+	Password          = "${PASSWORD}"
 	Tag               = "${TAG}"
 	Key               = "${KEY}"
 	Body              = "${BODY}"
@@ -39,8 +41,8 @@ func main() {
 			 * ${quickstart.ak.comment1}
 			 * ${quickstart.ak.comment2}
 			 */
-			AccessKey:    "",
-			AccessSecret: "",
+			AccessKey:    Username,
+			AccessSecret: Password,
 		},
 	},
 		rmq_client.WithTopics(Topic),
